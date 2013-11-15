@@ -1,0 +1,248 @@
+body {
+	background:#eee;
+	font-family:Arial, sans-serif;
+	font-size:1em;
+	color:#333;
+	text-align:justify;
+}
+
+/* PARTIES DU SITE */
+/* Le container sert à centrer le contenu global */
+#container {
+	width:1040px;
+	margin:auto;
+	overflow:hidden;
+}
+
+/* Le header comporte le logo du RP ainsi que le titre */
+header {
+	background:url("images/logo.png") no-repeat #333;
+	background-position: 30px 25px;
+	color:#fff;
+	height:200px;
+	margin-top:10px;
+	margin-right:220px;
+	margin-bottom:20px;
+	padding:20px;
+	text-align:right;
+	box-shadow:0 0 5px #333;
+}
+
+/* On positionne le titre en bas du header */
+header h1 {
+	margin-top:120px;
+}
+
+/* La classe row permet au footer de se positionner après article et nav
+ * bien que ces derniers éléments soient des float */
+.row:before, .row:after {
+	display: table;
+	line-height: 0;
+	content: "";
+}
+
+.row:after {
+	clear: both;
+}
+
+article {
+	float:left;
+	width:770px;
+	padding:20px;
+	background:#fff;
+	box-shadow:0 0 5px #aaa;
+	border:solid #297DED 5px; /* Par défaut, l'article est bordé de bleu mais cette valeur est modifiée dans le script js */
+}
+
+nav {
+	float:left;
+	margin-left:20px;
+	width:200px;
+}
+
+/* Les items du menu sont des block qui changent d'opacité au survol */
+nav a {
+	display:block;
+	margin-bottom:20px;
+	color:#fff;
+	height:70px;
+	padding:20px;
+	text-align:right;
+	box-shadow:0 0 5px #333;
+	opacity:1;
+	transition:opacity 0.4s ease-in-out;
+	-webkit-transition:opacity 0.4s ease-in-out; /* Safari */
+}
+
+nav a:hover {
+	box-shadow:0 0 12px #000;
+	opacity:0.6;
+}
+
+/* Le footer est précédé d'une bordure et comporte la signature et un lien vers les sources qui sont des float */
+footer {
+	border-top:solid #333 5px;
+	padding-top:5px;
+	margin-top:20px;
+	font-weight:bold;
+}
+
+#signature {
+	float:left;
+}
+
+#sources {
+	float:right;
+}
+
+/* STYLE DES BALISES */
+a {
+	color:#333;
+	text-decoration:none;
+	cursor:pointer; /* Je précise de mettre une "main" comme curseur sur les liens car ils n'ont pas tous l'attribut "href" */
+}
+
+a:hover {
+	text-decoration:underline;
+}
+
+/* Les paragraphes comporte un interlignage plus important pour une meilleure lisibilité */
+p {
+	line-height:22px;
+}
+
+/* Les paragraphes commencent par un alinéa */
+p:first-letter {
+	padding-left: 50px;
+} 
+
+/* Les items des listes sont espacés pour une meilleure lisibilité */
+li {
+	margin-bottom:10px;
+}
+
+/* Les images sont centrées et comportent un contour blanc bordé de gris foncé */
+img {
+	display:block;
+	padding:5px;
+	margin:auto;
+	width:auto;
+	border:solid #333 thin;
+	box-shadow:0 0 5px #555;
+}
+
+/* La légende des images est centrée et en italique */
+figcaption {
+	text-align:center;
+	font-style:italic;
+	margin-top:5px;
+}
+
+/* BLOCK SPÉCIAUX */
+/* J'ai défini ici les couleurs de fond des items du menu */
+nav a.intro {
+	background:#297DED;
+}
+
+nav a.partie1 {
+	background:#AF1A40;
+}
+
+nav a.partie2 {
+	background:#008B18;
+}
+
+nav a.partie3 {
+	background:#5333AE;
+}
+
+nav a.conclu {
+	background:#D9532D;
+}
+
+/* J'ai défini ici les couleurs de la bordure du bloc article */
+article.intro {
+	border-color:#297DED;
+}
+
+article.partie1 {
+	border-color:#AF1A40;
+}
+
+article.partie2 {
+	border-color:#008B18;
+}
+
+article.partie3 {
+	border-color:#5333AE;
+}
+
+article.conclu {
+	border-color:#D9532D;
+}
+
+article.sources {
+	border-color:#333;
+}
+
+/* Une remarque dans le texte est à texte blanc sur fond gris foncé et comporte une bordure orange à gauche */
+.remarque {
+	background:#333;
+	margin:20px;
+	padding:20px;
+	border-left:solid #F9A41E 10px;
+	color:white;
+	line-height:22px;
+}
+
+/* ANIMATIONS */
+/* Le contenu principal est modifié avec un effet de glissement sur la gauche */
+.translate-in {
+	transform:translateX(0px);
+	-ms-transform:translateX(0px); /* IE 9 */
+	-webkit-transform:translateX(0px); /* Safari et Chrome */
+	transition:all 1s ease-in-out;
+	-webkit-transition: all 1s ease-in-out; /* Safari */
+}
+
+.translate-out {
+	transform:translateX(-840px);
+	-ms-transform:translateX(-840px); /* IE 9 */
+	-webkit-transform:translateX(-840px); /* Safari et Chrome */
+	transition:all 1s ease-in-out;
+	-webkit-transition: all 1s ease-in-out; /* Safari */
+}
+
+/* Les mots compliqués peuvent être survolés pour obtenir une explication */
+a.note {
+	border-bottom:dotted #333 thin;
+}
+
+a.note:hover {
+	text-decoration:none;
+}
+
+a.note span {
+	position:absolute;
+	text-align:left;
+	margin-top:25px;
+	margin-left:-150px;
+	width:250px;
+	color:#ddd;
+	background:#222;
+	padding:15px;
+	border-radius:3px;
+	transform:scale(0) rotate(-12deg);
+	-ms-transform:scale(0) rotate(-12deg); /* IE 9 */
+	-webkit-transform:scale(0) rotate(-12deg); /* Safari et Chrome */
+	transition:all 0.25s;
+	-webkit-transition: all 0.25s; /* Safari */
+	opacity:0;
+}
+
+a.note:hover span {
+	transform:scale(1) rotate(0);
+	-ms-transform:scale(1) rotate(0); /* IE 9 */
+	-webkit-transform:scale(1) rotate(0); /* Safari et Chrome */
+	opacity:0.95;
+}

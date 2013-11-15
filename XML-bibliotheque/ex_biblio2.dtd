@@ -1,0 +1,12 @@
+<!ELEMENT BookList (Books,Categories)>
+<!ELEMENT Books (Item)+>
+<!ELEMENT Categories (Category)*>
+<!ELEMENT Category EMPTY>
+<!ATTLIST Category code ID #REQUIRED>
+<!ATTLIST Category desc NMTOKEN #REQUIRED>
+<!ELEMENT Item (Author|Publisher|Title)*>
+<!ELEMENT Author (#PCDATA)>
+<!ATTLIST Item ISBN ID #REQUIRED>
+<!ATTLIST Item cat IDREF #REQUIRED>
+<!ELEMENT Publisher (#PCDATA)>
+<!ELEMENT Title (#PCDATA)>

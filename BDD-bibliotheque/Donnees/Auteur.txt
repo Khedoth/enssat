@@ -1,0 +1,16 @@
+au01	Hugo	Victor
+au02	Soufflet	Olivier
+au03	Shakespeare	William
+au04	Sophocle	NULL
+au05	Rowling	J.K.
+au06	Eschyle	NULL
+au07	Steinbeck	John
+au08	Pascal	Blaise
+au09	Uderzo	Albert
+au10	Goscinny	René
+au11	Martin	Jacques
+au12	Jailloux	Marc
+au13	Venanzi	Marco
+au14	Corteggiani	François
+au15	Simon	Christophe
+au16	Lafont	Michel

@@ -1,0 +1,22 @@
+biblio := Bibliotheque new.
+
+biblio ajouterLivre.
+biblio catalogue.
+biblio supprimerLivre.
+
+biblio ajouterUsager.
+biblio listeUsagers.
+biblio supprimerUsager.
+
+biblio emprunter.
+biblio rendre.
+
+biblio chercherCodeBarre.
+biblio chercherMotClef.
+
+biblio livresEmpruntes.
+
+biblio chercherCodeBarre retarder.
+biblio livresRetard.
+
+biblio chercherUsager.

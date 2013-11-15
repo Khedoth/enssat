@@ -1,0 +1,18 @@
+ab01	Petit	Henri	2, rue de Lille	2012-01-06
+ab02	Fouquet	Lucien	84, avenue de Marlioz	2012-12-31
+ab03	Picaud	Roger	52, avenue de Marlioz	2012-12-25
+ab04	Coudert	André	83, rue du Fossé des Tanneurs	2012-12-19
+ab05	Bruneau	Sébastien	86, place de la Madeleine	2012-12-13
+ab06	Lagarde	Maxime	12, boulevard d'Alsace	2012-12-07
+ab07	Ferrier	Sylvain	22, rue de Chaligny	2012-12-01
+ab08	Arnoux	Laurent	9, rue de la Mare aux Carats	2012-11-25
+ab09	Dufour	Antoine	50, avenue du Maréchal Juin	2012-11-19
+ab10	René	Julien	6, rue Pierre Motte	2012-11-13
+ab11	Claverie	Emmanuelle	2, rue Faubourg National	2012-11-07
+ab12	Bianchi	Thierry	84, rue Léon Dierx	2012-11-01
+ab13	Rivet	Clémence	33, rue du Général Ailleret	2012-10-26
+ab14	Herbin	Camille	96, avenue de Provence	2012-10-20
+ab15	Lebreton	Laurence	9, rue de Raymond Poincarré	2012-10-14
+ab16	Monnet	Adrien	22, rue du Palais	2012-10-08
+ab17	Gallo	Lucie	67, route de Lyon	2012-10-02
+ab18	Delpech	Maxime	50, rue du Président Roosevelt	2012-09-26

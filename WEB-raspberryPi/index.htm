@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Le Raspberry Pi - D'où vient son succès ?</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link rel="stylesheet" type="text/css" href="style.css" />
+	<script type="text/javascript" src="script.js"></script>
+</head>
+<body>
+	<div id="container">
+		<header>
+			<h1>Le Raspberry Pi</h1>
+			D'où vient son succès ?
+		</header>
+		<div class="row">
+			<article id="article"></article> <!-- ici sera affiché le contenu principal -->
+			<nav>
+				<!-- chaque item du menu a une couleur différente, définie par sa classe -->
+				<a onclick="afficherArticle('intro');" class="intro">Accueil</a>
+				<a onclick="afficherArticle('partie1');" class="partie1">Apprendre la programmation</a>
+				<a onclick="afficherArticle('partie2');" class="partie2">Diffuser de l'information</a>
+				<a onclick="afficherArticle('partie3');" class="partie3">Se Divertir</a>
+				<a onclick="afficherArticle('conclu');" class="conclu">Vers d'autres utilisations</a>
+			</nav>
+		</div>
+		<footer>
+			<div id="signature">
+				Kévin Vythelingum - 2013
+			</div>
+			<div id="sources">
+				<a onclick="afficherArticle('sources');">Sources</a>
+			</div>
+		</footer>
+	</div>
+	<script type="text/javascript">
+		afficherArticle("intro"); //l'introduction est le contenu principal par défaut
+	</script>
+</body>
+</html>

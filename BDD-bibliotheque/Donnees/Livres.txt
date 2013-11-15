@@ -1,0 +1,35 @@
+l01	Les Raisins de la Colère
+l02	Pensées
+l03	L'Orestie
+l04	Les Perses
+l05	Les Choéphores
+l06	Prométhée enchaîné
+l07	Les Sept contre Thèbes
+l08	Les Suppliantes
+l09	Oedipe Roi
+l10	Antigone
+l11	Alix, la dernière conquête
+l12	Alix, l'ombre de Sarapis
+l13	Alix l'intrépide
+l14	Alix, le sphinx d'or
+l15	Alix, la conjuration de Baal
+l16	Alix, le dernier Spartiate
+l17	Astérix le Gaulois
+l18	Astérix en Hispanie
+l19	Astérix légionnaire
+l20	Astérix et les Goths
+l21	Astérix gladiateur
+l22	Astérix et la serpe d'or
+l23	Astérix en Corse
+l24	Astérix chez les Bretons
+l25	Harry Potter à l'école des sorciers
+l26	Harry Potter et la chambre des secrets
+l27	Harry Potter et le prisonnier d'Azkaban
+l28	Harry Potter et la coupe de feu
+l29	Harry Potter et le prince de Sang-Mêlé
+l30	Harry Potter et l'ordre du Phénix
+l31	Harry Potter et les reliques de la mort
+l32	Hamlet
+l33	Hernani
+l34	Les Misérables
+l35	Le SQL
