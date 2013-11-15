@@ -1,4 +1,4 @@
 enssat
 ======
 
-Regroupe les projets réalisés dans le cadre de l'enseignement de l'ENSSAT
+Regroupe les projets et travaux pratiques que j'ai réalisé dans le cadre de l'enseignement de l'ENSSAT.
