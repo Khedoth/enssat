@@ -1,6 +1,0 @@
-<!ENTITY % biblio1 SYSTEM "ex_biblio1.dtd">
-<!ENTITY % biblio2 SYSTEM "ex_biblio2.dtd">
-<!ELEMENT biblio (bibliotheque|BookList)+ >
-
-%biblio1;
-%biblio2;
