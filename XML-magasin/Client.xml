@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<ClientList>
+	<Client idClt="A100">
+		<Nom> Durant </Nom>
+		<Prenom> Dupont </Prenom>
+		<Adresse> Lannion </Adresse>
+    </Client>
+	
+    <Client idClt="A101">
+        <Nom> Mark </Nom>
+		<Prenom> Mark </Prenom>
+		<Adresse> Rennes </Adresse>
+    </Client>
+	
+    <Client idClt="A102">
+		<Nom> Durant </Nom>
+		<Prenom> Pierre </Prenom>
+		<Adresse> Lannion </Adresse>
+   	 </Client>
+	
+    <Client idClt="A103">
+		<Nom> Bretagne </Nom>
+		<Prenom> Anne </Prenom>
+		<Adresse> Nantes </Adresse>
+    </Client>
+
+    <Client idClt="B200"> 
+        <Nom> Dupond </Nom>
+		<Prenom> Durand </Prenom>
+		<Adresse> Rennes </Adresse>
+    </Client>
+
+    <Client idClt="C300">
+        <Nom> Pierre </Nom>
+		<Prenom> Marie </Prenom>
+		<Adresse> Paris </Adresse>
+    </Client>
+
+</ClientList>
