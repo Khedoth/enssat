@@ -28,6 +28,10 @@ int main()
 
   /* Recuperation de l'hote */
   host = gethostbyname("localhost");
+  if(host==NULL)
+  {
+    FATAL("gethostbyname");
+  }
 
   /* Creation de la socket */
   fd = socket(AF_INET, SOCK_STREAM, 0);
