@@ -10,20 +10,21 @@
 #include <netinet/in.h>
 #include <signal.h>
 #include <netdb.h>
-#include <fcntl.h>
+#include <unistd.h>
 
 #define FATAL(err) { perror((char *) err); exit(1);}
 #define MAXBUF  1024
+#define NUMPORT 1050
 
 int main()
 {
-  int fd, bytes_read, test;
-  struct sockaddr_in dest;
+  int fd, recu, test;
+  struct sockaddr_in addr;
+  size_t lg_addr = sizeof addr;
   struct hostent *host;
   char buffer[MAXBUF];
 
-  int numero_port = 8000;
-  char url[] = "http://localhost:8000/index.txt";
+  char requete[] = "http://localhost:1050/index.txt";
 
   /* Recuperation de l'hote */
   host = gethostbyname("localhost");
@@ -36,33 +37,31 @@ int main()
   }
 
   /* Nommage de la socket */
-  dest.sin_family = AF_INET;
-  dest.sin_addr.s_addr = ((struct in_addr *) (host->h_addr))->s_addr;
-  dest.sin_port = htons(numero_port);
+  addr.sin_family = AF_INET;
+  addr.sin_addr.s_addr = ((struct in_addr *) (host->h_addr))->s_addr;
+  addr.sin_port = htons(NUMPORT);
 
   /* Connexion au serveur */
-  test = connect(fd, (struct sockaddr*)&dest, sizeof(dest));
+  test = connect(fd, (struct sockaddr*)&addr, lg_addr);
   if(test != 0)
   {
     FATAL("Connect");
   }
 
   /* Ecriture et envoi de la requete */
-  sprintf(buffer, "GET %s HTTP/1.0\n\n", url);
+  sprintf(buffer, "GET %s\n", requete);
   send(fd, buffer, strlen(buffer), 0);
 
   /* Affichage de la reponse */
-  do
+  recu = recv(fd, buffer, sizeof(buffer), 0);
+  while (recu > 0)
   {
-    bzero(buffer, sizeof(buffer));
-    bytes_read = recv(fd, buffer, sizeof(buffer), 0);
-    if ( bytes_read > 0 )
     printf("%s", buffer);
+    recu = recv(fd, buffer, sizeof(buffer), 0);
   }
-  while ( bytes_read > 0 );
 
   /* Fermeture de la socket */
-  //close(fd);
+  close(fd);
 
   return 0;
 }
