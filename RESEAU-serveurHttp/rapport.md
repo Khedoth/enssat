@@ -1,8 +1,6 @@
 **Kévin**
 **Vythelingum**
 
-<style type="text/css">html{text-align:justify;}</style>
-
 # Serveur HTTP haute disponibilité
 
 ## Introduction
@@ -36,10 +34,10 @@ Cette primitive renvoie soit un descripteur de la socket créée, soit -1 en cas
 C'est pourquoi nous testerons la valeur de `fd` afin de lancer la commande `FATAL` en cas d'erreur.
 De plus, elle prend en argument le domaine, le type et le protocole utilisés.
 Le choix s'est porté sur `AF_INET` pour le domaine puisque nous souhaitons communiquer par Internet en utilisant des adresses IPv4.
-Aussi, le type est `SOCK_STREAM` qui permet une connexion fiable et bidirectionnelle, nécessaire à la réception de requêtes et l'envoi de réponses.
+Aussi, le type est `SOCK_STREAM`, qui permet une connexion fiable et bidirectionnelle, nécessaire à la réception de requêtes et l'envoi de réponses.
 Enfin, en mettant 0 pour le protocole, on obtient un protocole par défaut correspondant au type spécifié.
 
-Cela donne :
+Cela donne pour le TODO 1 :
 
     fd = socket(AF_INET, SOCK_STREAM, 0);
     if(fd < 0)
@@ -49,12 +47,19 @@ Cela donne :
 
 #### TODO 2 : associer un nom à la socket
 
-Pour associer un nom à la socket, on utilise la fonction *bind* :
+Pour associer un nom à la socket, on utilise la primitive `bind` :
 
     int bind(int socket, const struct sockaddr *address, socklen_t address_len);
 
-On teste la valeur de retour qui est négative en cas d'erreur.
-Cela donne :
+Elle prend comme paramètres le descripteur de la socket concernée, ici `fd`,
+une structure propre aux sockets comportant notamment le numéro du port utilisé,
+ainsi que la taille de cette structure (sizeof).
+Une structure `addr_serveur` de type `struct sockaddr_in` a déjà été définie, il s'agit donc la faire correspondre au type `struct addr` à l'aide d'un cast.
+On indique ensuite `lg_addr_serveur` qui vaut `sizeof(addr_serveur)`, soit la taille de la structure passée en second paramètre.
+
+Comme précédemment, on teste sa valeur de retour qui est négative en cas d'erreur.
+
+Cela donne pour le TODO 2:
 
     test = bind(fd, (struct sockaddr *) &addr_serveur, lg_addr_serveur);
     if(test < 0)
@@ -65,13 +70,28 @@ Cela donne :
 #### TODO 3 : ouverture du service
 
 On ouvre enfin le service pour se placer en attente de potentiels clients.
-Pour cela, on utilise la fonction *listen* :
+Pour cela, on utilise la primitive `listen` :
 
     int listen(int socket, int backlog);
 
-Avec un backlog de 4, cela donne :
+Elle prend comme paramètres le descripteur de la socket concernée, ici `fd`,
+et le nombre de clients simultannés autorisés, appelé *backlog*.
+
+Avec un backlog de 4 comme demandé, cela donne pour le TODO3 :
 
     listen(fd, 4);
+
+#### Test du serveur
+
+Pour tester le serveur, il a d'abord fallu compiler les fichiers sources grâce au Makefile fourni, puis le lancer grâce à la commande suivante en étant placé au niveau de l'exécutable dans l'arborescence des fichiers :
+
+    ./serveur-web -p 1050 -d "${PWD}/rep/"
+
+Ce qui suit *-p* est le numéro du port utilisé, ici 1050, et ce qui suit *-d* est l'emplacement de la racine des fichiers qui pourront être servis.
+
+Ensuite, la visite de l'adresse `http://localhost:1050/rep/index.txt` avec un navigateur web a permis de valider le fonctionnement du serveur.
+En effet, le contenu du fichier *index.txt* présent dans le répertoire *rep/* était affiché sur une page HTML.
+
 
 ### Compléments
 
