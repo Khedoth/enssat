@@ -92,11 +92,17 @@ Ce qui suit *-p* est le numéro du port utilisé, ici 1050, et ce qui suit *-d* 
 Ensuite, la visite de l'adresse `http://localhost:1050/rep/index.txt` avec un navigateur web a permis de valider le fonctionnement du serveur.
 En effet, le contenu du fichier *index.txt* présent dans le répertoire *rep/* était affiché sur une page HTML.
 
-
 ### Compléments
+
+#### Un client HTTP en C
+
+Maintenant que nous avons testé le bon fonctionnement de notre serveur à l'aide d'un navigateur web, il s'agit de réaliser notre propre client HTTP écrit en langage C.
+
 
 ## Conclusion
 
+En somme, aucune difficulté n'a été rencontrée pour mettre en place le serveur de base.
+Cependant, la réalisation du client a fait apparaître les premiers problèmes lors de l'implémentation du verbe GET.
+En effet, il fallait passer comme requête `GET index.txt HTTP/1.1` et non `GET http://localhost:1050/index.txt`.
+
 - degré d'avancement
-- problèmes rencontrés
-- solutions

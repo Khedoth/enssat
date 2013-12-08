@@ -24,8 +24,6 @@ int main()
   struct hostent *host;
   char buffer[MAXBUF];
 
-  char requete[] = "http://localhost:1050/index.txt";
-
   /* Recuperation de l'hote */
   host = gethostbyname("localhost");
   if(host==NULL)
@@ -53,7 +51,7 @@ int main()
   }
 
   /* Ecriture et envoi de la requete */
-  sprintf(buffer, "GET %s\n", requete);
+  sprintf(buffer, "GET index.txt HTTP/1.1", requete);
   send(fd, buffer, strlen(buffer), 0);
 
   /* Affichage de la reponse */
