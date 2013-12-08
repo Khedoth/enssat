@@ -1,3 +1,9 @@
+**Kévin**
+**Vythelingum**
+**LSI2**
+
+<style>html{text-align:justify;}</style>
+
 # Serveur HTTP haute disponibilité
 
 ## Introduction
@@ -15,11 +21,24 @@ L'objectif du TP est de :
 
 ### La base
 
-#### TODO 1 : création de la prise
+Il s'agit tout d'abord de compléter le fichier *reseau.c* au niveau des trois étapes fondamentales de mise en place d'une socket, à savoir :
 
-Pour l'étape de création, on utilise la fonction *socket* dont on récupère le retour dans *fd* :
+* la création de la socket
+* l'association d'un nom à la socket
+* l'ouverture du service
+
+#### TODO 1 : création de la socket
+
+Pour l'étape de création, on utilise la fonction `socket` dont on récupère le retour dans `fd` :
 
     int socket(int domain, int type, int protocol);
+
+Cette primitive renvoie soit un descripteur de la socket créée, soit -1 en cas d'erreur.
+C'est pourquoi nous testerons la valeur de `fd` afin de lancer la commande `FATAL` en cas d'erreur.
+De plus, elle prend en argument le domaine, le type et le protocole utilisés.
+Le choix s'est porté sur `AF_INET` pour le domaine puisque nous souhaitons communiquer par Internet en utilisant des adresses IPv4.
+Aussi, le type est `SOCK_STREAM` qui permet une connexion fiable et bidirectionnelle, nécessaire à la réception de requêtes et l'envoi de réponses.
+Enfin, en mettant 0 pour le protocole, on obtient un protocole par défaut correspondant au type spécifié.
 
 Cela donne :
 
