@@ -1,8 +1,7 @@
 **Kévin**
 **Vythelingum**
-**LSI2**
 
-<style>html{text-align:justify;}</style>
+<style type="text/css">html{text-align:justify;}</style>
 
 # Serveur HTTP haute disponibilité
 
