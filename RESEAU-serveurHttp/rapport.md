@@ -88,6 +88,7 @@ Pour tester le serveur, il a d'abord fallu compiler les fichiers sources grâce 
     ./serveur-web -p 1050 -d "${PWD}/rep/"
 
 Ce qui suit *-p* est le numéro du port utilisé, ici 1050, et ce qui suit *-d* est l'emplacement de la racine des fichiers qui pourront être servis.
+Un '/' a été ajouté à la fin de la commande pour permettre des requêtes GET manuelles sans mettre de '/' devant l'emplacement voulu.
 
 Ensuite, la visite de l'adresse `http://localhost:1050/rep/index.txt` avec un navigateur web a permis de valider le fonctionnement du serveur.
 En effet, le contenu du fichier *index.txt* présent dans le répertoire *rep/* était affiché sur une page HTML.
@@ -97,7 +98,41 @@ En effet, le contenu du fichier *index.txt* présent dans le répertoire *rep/* 
 #### Un client HTTP en C
 
 Maintenant que nous avons testé le bon fonctionnement de notre serveur à l'aide d'un navigateur web, il s'agit de réaliser notre propre client HTTP écrit en langage C.
+Pour cela, nous réalisons un programme *client-http* de fichier source *client-http.c* que nous compilerons à l'aide de la commande suivante :
 
+    gcc -W -Wall -o client-http client-http.c
+
+Cette commande est ajoutée dans le fichier `doIt.bash` pour faciliter la compilation de l'ensemble.
+
+Le principe de fonctionnement du client est de mettre en place une socket connectée au serveur tout d'abord, puis d'envoyer la requête `GET index.txt HTTP/1.1` afin de demander le contenu du fichier *index.txt* au serveur.
+Enfin, nous affichons le résultat de la requête à l'aide d'une boucle.
+
+##### Mettre en place la socket du client
+
+Pour mettre en place la socket du client, les étapes importantes sont :
+
+* la récupération de l'hôte
+* la création de la socket
+* le nommage de la socket
+* la connexion au serveur
+
+La récupération de l'hôte se fait à l'aide de la primitive `gethostbyname(const char *name);` qui prend en paramètre l'adresse de l'hôte sous forme de chaîne de caractères et renvoi un `struct hostent *` qui servira au nommage de la socket.
+Nous stockons le retour de cette fonction dans le pointeur `host`, c'est pourquoi nous vérifions la bonne allocation de mémoire ensuite, en envoyant une commande `FATAL` en cas d'erreur.
+
+Cela donne :
+
+    host = gethostbyname("localhost");
+    if(host==NULL)
+    {
+      FATAL("gethostbyname");
+    }
+
+
+
+
+##### Envoyer une requête GET
+
+##### Récupérer et afficher le résultat
 
 ## Conclusion
 
