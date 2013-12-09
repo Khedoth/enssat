@@ -235,3 +235,4 @@ Cependant, la réalisation du client a fait apparaître des problèmes lors de l
 En effet, il fallait passer comme requête `GET index.txt HTTP/1.1` et non `GET http://localhost:1050/index.txt`.
 
 En ce qui concerne le degré d'avancement, j'ai complété la mise en place du serveur et j'ai implémenté un client capable d'envoyer une requête de type GET.
+Je n'ai pas implémenté la reconnaissance de PUT, d'une part par manque de temps et d'autre part par manque de compréhension de comment effectuer une requête pourvue d'un corps.
