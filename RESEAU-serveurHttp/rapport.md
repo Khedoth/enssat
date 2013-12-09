@@ -105,7 +105,7 @@ Pour cela, nous réalisons un programme *client-http* de fichier source *client-
 Cette commande est ajoutée dans le fichier `doIt.bash` pour faciliter la compilation de l'ensemble.
 
 Le principe de fonctionnement du client est de mettre en place une socket connectée au serveur tout d'abord, puis d'envoyer la requête `GET index.txt HTTP/1.1` afin de demander le contenu du fichier *index.txt* au serveur.
-Enfin, nous affichons le résultat de la requête à l'aide d'une boucle.
+Enfin, nous affichons le résultat de la requête à l'aide d'une boucle avant de fermer la socket.
 
 ##### Mettre en place la socket du client
 
@@ -165,14 +165,73 @@ On obtient donc :
 
 ##### Envoyer une requête GET
 
+Une fois la connexion établie avec le serveur, il s'agit de former la requête GET et l'envoyer au serveur.
 
+Pour former la requête, nous avons besoin d'une chaîne de caractères que nous appelons `buffer`, dans laquelle nous écrivons notre requête :
+
+    GET index.txt HTTP/1.1
+
+Cette requête comporte trois parties : le verbe HTTP utilisé (GET), la ressource demandée (index.txt) et le protocole utilisé (HTTP/1.1).
+
+Ensuite, nous envoyons notre requête au serveur à l'aide de la primitive suivante :
+
+    send(int sockfd, const void *buf, size_t len, int flags);
+
+Elle prend comme paramètres le descripteur de notre socket (fd), la chaîne de caractères contenant l'expression de notre requête (buffer), la taille de cette chaîne (strlen(buffer)) ainsi qu'un flag que nous mettons à 0 car nous n'en n'avons pas besoin.
+Il peut être intéressant de noter que dans ce cas, la primitive `send` est équivalente à la primitive `write`.
+
+Cela donne :
+
+    sprintf(buffer, "GET index.txt HTTP/1.1");
+    send(fd, buffer, strlen(buffer), 0);
 
 ##### Récupérer et afficher le résultat
+
+Il faut ensuite afficher le résultat du serveur. En effet, le verbe GET a pour objet de demander une ressource au serveur, il nous renvoie donc cette ressource !
+Pour cela, nous utilisons la primitive suivante :
+
+    recv(int sockfd, void *buf, size_t len, int flags);
+
+Elle prend les mêmes paramètres que la primitive `send`.
+En effet, nous nous servons désormais de la chaîne *buffer* pour stocker le résultat envoyé par le serveur.
+Cette primitive retourne la taille du retour du serveur, ce qui nous permet de boucler l'affichage tant qu'on obtient quelque chose de ce dernier.
+
+On a ainsi :
+
+    recu = recv(fd, buffer, sizeof(buffer), 0);
+    while (recu > 0)
+    {
+      printf("%s", buffer);
+      recu = recv(fd, buffer, sizeof(buffer), 0);
+    }
+
+##### Fermer la socket
+
+La dernière étape de l'implémentation du client consiste à fermer la requête à l'aide de la primitive `close(int fd);` qui prend en paramètre le descripteur de notre socket.
+L'utilisation de cette primitive nécessite la bibliothèque `<unistd.h>`.
+
+##### Compilation et test du client
+
+Pour compiler le client, il suffit de lancer le script bash *doIt.bash* qui s'occupé également de lancer le serveur sur le port 1050.
+Il ne reste plus qu'à lancer l'exécutable *client-http* créé.
+On obtient le résultat voulu, c'est-à-dire le contenu du fichier *index.txt* mis en forme par le serveur dans un document HTML :
+
+    HTTP/1.1 200 OK
+    Server: 0.0.7 pour Unix
+    Content-Type: text/html; charset=iso-8859-1
+
+    <html><head><title>Fichier index.txt</title></head>
+    <body bgcolor="white"><h1>Fichier /users/elo/kvytheli/enssat/RESEAU-serveurHttp/rep/index.txt</h1>
+    <center><table><tr><td bgcolor="yellow"><listing>
+    hello
+    </listing></table></center></body></html>
+
+Ceci permet de valider le bon fonctionnement de notre client HTTP pour les requêtes de type GET.
 
 ## Conclusion
 
 En somme, aucune difficulté n'a été rencontrée pour mettre en place le serveur de base.
-Cependant, la réalisation du client a fait apparaître les premiers problèmes lors de l'implémentation du verbe GET.
+Cependant, la réalisation du client a fait apparaître des problèmes lors de l'implémentation du verbe GET.
 En effet, il fallait passer comme requête `GET index.txt HTTP/1.1` et non `GET http://localhost:1050/index.txt`.
 
-- degré d'avancement
+En ce qui concerne le degré d'avancement, j'ai complété la mise en place du serveur et j'ai implémenté un client capable d'envoyer une requête de type GET.

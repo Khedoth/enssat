@@ -51,7 +51,7 @@ int main()
   }
 
   /* Ecriture et envoi de la requete */
-  sprintf(buffer, "GET index.txt HTTP/1.1", requete);
+  sprintf(buffer, "GET index.txt HTTP/1.1");
   send(fd, buffer, strlen(buffer), 0);
 
   /* Affichage de la reponse */
