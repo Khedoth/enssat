@@ -127,10 +127,45 @@ Cela donne :
       FATAL("gethostbyname");
     }
 
+La création de la socket se fait exactement comme pour le serveur et pour les mêmes raisons :
 
+    fd = socket(AF_INET, SOCK_STREAM, 0);
+    if(fd < 0)
+    {
+      FATAL("socket");
+    }
 
+Le nommage de la socket se fait à travers le champ `sin_addr.s_addr` de la structure `addr` de type `sockaddr_in`.
+Nous l'affectons à la valeur `((struct in_addr *) (host->h_addr))->s_addr`, soit l'équivalent de ce champ pour la structure `host`.
+Ainsi, la socket du client est liée au serveur.
+Nous précisons 1050 comme numéro de port, il faudra donc lancer le serveur à ce port.
+
+Cela donne :
+
+    #define NUMPORT 1050
+    ...
+    addr.sin_family = AF_INET;
+    addr.sin_addr.s_addr = ((struct in_addr *) (host->h_addr))->s_addr;
+    addr.sin_port = htons(NUMPORT);
+
+La connexion au serveur s'effectue grâce à la primitive suivante qui initie la connexion d'une socket :
+
+    connect(int sockfd, const struct sockaddr *addr, socklen_t addrlen);
+
+Elle prend comme paramètres le descripteur de notre socket, la structure `addr` qui contient les informations sur le serveur, et la taille de cette structure.
+Elle renvoi un entier différent de 0 en cas d'erreur.
+
+On obtient donc :
+
+    test = connect(fd, (struct sockaddr*)&addr, lg_addr);
+    if(test != 0)
+    {
+      FATAL("Connect");
+    }
 
 ##### Envoyer une requête GET
+
+
 
 ##### Récupérer et afficher le résultat
 
