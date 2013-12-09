@@ -1,3 +1,5 @@
+<style>html{text-align:justify;}</style>
+
 **Kévin**
 **Vythelingum**
 
